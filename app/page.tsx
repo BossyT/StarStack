@@ -2971,35 +2971,10 @@ Focus on the key sections and content, making it clean and modern.`;
                   )}
               </form>
               
-              {/* Model Selector */}
-              <div className="mt-6 flex items-center justify-center animate-[fadeIn_1s_ease-out]">
-                <select
-                  value={aiModel}
-                  onChange={(e) => {
-                    const newModel = e.target.value;
-                    setAiModel(newModel);
-                    const params = new URLSearchParams(searchParams);
-                    params.set('model', newModel);
-                    if (sandboxData?.sandboxId) {
-                      params.set('sandbox', sandboxData.sandboxId);
-                    }
-                    router.push(`/?${params.toString()}`);
-                  }}
-                  className="px-3 py-1.5 text-sm bg-white border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#36322F] focus:border-transparent"
-                  style={{
-                    boxShadow: '0 0 0 1px #e3e1de66, 0 1px 2px #5f4a2e14'
-                  }}
-                >
-                  {appConfig.ai.availableModels.map(model => (
-                    <option key={model} value={model}>
-                      {appConfig.ai.modelDisplayNames[model] || model}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
+              {/* Model Info */}
+<div className="mt-6 flex items-center justify-center animate-[fadeIn_1s_ease-out]">
+  <p className="text-sm text-muted-foreground">Model: GPT-5</p>
+</div>
       )}
       
       <div className="bg-card px-4 py-4 border-b border-border flex items-center justify-between">
@@ -3012,26 +2987,8 @@ Focus on the key sections and content, making it clean and modern.`;
         </div>
         <div className="flex items-center gap-2">
           {/* Model Selector - Left side */}
-          <select
-            value={aiModel}
-            onChange={(e) => {
-              const newModel = e.target.value;
-              setAiModel(newModel);
-              const params = new URLSearchParams(searchParams);
-              params.set('model', newModel);
-              if (sandboxData?.sandboxId) {
-                params.set('sandbox', sandboxData.sandboxId);
-              }
-              router.push(`/?${params.toString()}`);
-            }}
-            className="px-3 py-1.5 text-sm bg-white border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#36322F] focus:border-transparent"
-          >
-            {appConfig.ai.availableModels.map(model => (
-              <option key={model} value={model}>
-                {appConfig.ai.modelDisplayNames[model] || model}
-              </option>
-            ))}
-          </select>
+          {/* Model Info - Left side */}
+<p className="text-sm text-muted-foreground">Model: GPT-5</p>
           <Button 
             variant="code"
             onClick={() => createSandbox()}
