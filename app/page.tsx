@@ -58,10 +58,24 @@ export default function AISandboxPage() {
     }
   ]);
   const [aiChatInput, setAiChatInput] = useState('');
-  const [aiEnabled] = useState(true);
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const [aiModel, setAiModel] = useState(() => {
+const [aiEnabled] = useState(true);
+const searchParams = useSearchParams();
+const router = useRouter();
+
+// 🔒 Force GPT-5 everywhere (ignore ?model=)
+const aiModel = "gpt-5" as const;
+
+const [urlOverlayVisible, setUrlOverlayVisible] = useState(false);
+const [urlInput, setUrlInput] = useState('');
+const [urlStatus, setUrlStatus] = useState<string[]>([]);
+const [showHomeScreen, setShowHomeScreen] = useState(true);
+const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set(['app', 'src', 'src/components']));
+const [selectedFile, setSelectedFile] = useState<string | null>(null);
+const [homeScreenFading, setHomeScreenFading] = useState(false);
+const [homeUrlInput, setHomeUrlInput] = useState('');
+const [homeContextInput, setHomeContextInput] = useState('');
+const [activeTab, setActiveTab] = useState<'generation' | 'preview'>('preview');
+
     const modelParam = searchParams.get('model');
     return appConfig.ai.availableModels.includes(modelParam || '') ? modelParam! : appConfig.ai.defaultModel;
   });
