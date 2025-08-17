@@ -1,5 +1,6 @@
 'use client';
 
+
 import { Suspense } from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -115,6 +116,7 @@ const [showLoadingBackground, setShowLoadingBackground] = useState(false);
   }>({
     scrapedWebsites: [],
     generatedComponents: [],
+ 
     appliedCode: [],
     currentProject: '',
     lastGeneratedCode: undefined
@@ -150,7 +152,8 @@ const [showLoadingBackground, setShowLoadingBackground] = useState(false);
     streamedCode: '',
     isStreaming: false,
     isThinking: false,
-    files: [],
+    f
+      iles: [],
     lastProcessedPosition: 0
   });
 
@@ -185,6 +188,7 @@ const [showLoadingBackground, setShowLoadingBackground] = useState(false);
           console.log('[home] Attempting to restore sandbox:', sandboxIdParam);
           // For now, just create a new sandbox - you could enhance this to actually restore
           // the specific sandbox if your backend supports it
+       
           await createSandbox(true);
         } else {
           console.log('[home] No sandbox in URL, creating new sandbox automatically...');
@@ -220,6 +224,7 @@ const [showLoadingBackground, setShowLoadingBackground] = useState(false);
         }, 500);
       }
     };
+
     
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
