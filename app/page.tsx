@@ -70,27 +70,32 @@ const [urlInput, setUrlInput] = useState('');
 const [urlStatus, setUrlStatus] = useState<string[]>([]);
 const [showHomeScreen, setShowHomeScreen] = useState(true);
 const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set(['app', 'src', 'src/components']));
+// --- STATE & ROUTER (cleaned) ---
+const [aiChatInput, setAiChatInput] = useState('');
+const [aiEnabled] = useState(true);
+
+const searchParams = useSearchParams(); // keep if used for sandbox or other params
+const router = useRouter();
+
+// 🔒 Force GPT-5 everywhere (ignore ?model=)
+const aiModel = "gpt-5" as const;
+
+const [urlOverlayVisible, setUrlOverlayVisible] = useState(false);
+const [urlInput, setUrlInput] = useState('');
+const [urlStatus, setUrlStatus] = useState<string[]>([]);
+const [showHomeScreen, setShowHomeScreen] = useState(true);
+const [expandedFolders, setExpandedFolders] = useState<Set<string>>(
+  new Set(['app', 'src', 'src/components'])
+);
 const [selectedFile, setSelectedFile] = useState<string | null>(null);
 const [homeScreenFading, setHomeScreenFading] = useState(false);
 const [homeUrlInput, setHomeUrlInput] = useState('');
 const [homeContextInput, setHomeContextInput] = useState('');
 const [activeTab, setActiveTab] = useState<'generation' | 'preview'>('preview');
+const [showStyleSelector, setShowStyleSelector] = useState(false);
+const [selectedStyle, setSelectedStyle] = useState<string | null>(null);
+const [showLoadingBackground, setShowLoadingBackground] = useState(false);
 
-    const modelParam = searchParams.get('model');
-    return appConfig.ai.availableModels.includes(modelParam || '') ? modelParam! : appConfig.ai.defaultModel;
-  });
-  const [urlOverlayVisible, setUrlOverlayVisible] = useState(false);
-  const [urlInput, setUrlInput] = useState('');
-  const [urlStatus, setUrlStatus] = useState<string[]>([]);
-  const [showHomeScreen, setShowHomeScreen] = useState(true);
-  const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set(['app', 'src', 'src/components']));
-  const [selectedFile, setSelectedFile] = useState<string | null>(null);
-  const [homeScreenFading, setHomeScreenFading] = useState(false);
-  const [homeUrlInput, setHomeUrlInput] = useState('');
-  const [homeContextInput, setHomeContextInput] = useState('');
-  const [activeTab, setActiveTab] = useState<'generation' | 'preview'>('preview');
-  const [showStyleSelector, setShowStyleSelector] = useState(false);
-  const [selectedStyle, setSelectedStyle] = useState<string | null>(null);
   const [showLoadingBackground, setShowLoadingBackground] = useState(false);
   const [urlScreenshot, setUrlScreenshot] = useState<string | null>(null);
   const [isCapturingScreenshot, setIsCapturingScreenshot] = useState(false);
