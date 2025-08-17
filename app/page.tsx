@@ -416,9 +416,9 @@ const [showLoadingBackground, setShowLoadingBackground] = useState(false);
         
         // Update URL with sandbox ID
         const newParams = new URLSearchParams(searchParams.toString());
-        newParams.set('sandbox', data.sandboxId);
-        newParams.set('model', aiModel);
-        router.push(`/?${newParams.toString()}`, { scroll: false });
+newParams.set('sandbox', data.sandboxId);
+// 🚫 no longer set 'model'
+router.push(`/?${newParams.toString()}`, { scroll: false });
         
         // Fade out loading background after sandbox loads
         setTimeout(() => {
